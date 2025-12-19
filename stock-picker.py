@@ -1,11 +1,11 @@
-import sys
-import os
+import json
 
-summary = os.environ["GITHUB_STEP_SUMMARY"]
+data = {
+    "users": 42,
+    "status": "ok"
+}
 
-with open(summary, "a") as f:
-    f.write("## Script Results\n")
-    f.write("- Users: 42\n")
-    f.write("- Status: OK\n")
+with open("output.json", "w") as f:
+    json.dump(data, f, indent=2)
 
-print("Argument:", sys.argv[1])
+print("Wrote output.json")
