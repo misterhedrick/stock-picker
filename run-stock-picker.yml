@@ -2,19 +2,22 @@ name: Run Python Script Manually
 
 on:
   workflow_dispatch:
+    inputs:
+      message:
+        description: "Message to pass to the script"
+        required: true
+        default: "hello"
 
 jobs:
   run-script:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Run script
-        run: python stock-picker.py
+        run: python your_script.py "${{ inputs.message }}"
